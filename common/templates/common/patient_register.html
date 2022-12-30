@@ -2,10 +2,8 @@
 {% load static %}
 
 {% block header %}
-
-<link rel="stylesheet" href="{% static 'css/pt_register.css' %}">
-
-
+<link rel="stylesheet" href="{% static 'css/pt_register.css' %}"> 
+<link rel="stylesheet" href="{% static 'css/patient_style.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -13,10 +11,10 @@
 <body>
     <div class="form-body">
         <div class="row">
+            <h1 style="text-align: center; color:rgb(2, 8, 55); padding-top: 20px;">Patient Registration Form</h1>
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3 style="text-align: center;">Patient Registration Form</h3>
                         {{ success_msg }}
                          {{error_msg }}
                         <form method="POST" enctype="multipart/form-data">

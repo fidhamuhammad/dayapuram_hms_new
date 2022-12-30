@@ -12,28 +12,16 @@
 
     <div class="container">
 
-        <div class="main-body">
-
-            <!-- Breadcrumb -->
-            <!-- <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-            </ol>
-          </nav> -->
-            <!-- /Breadcrumb -->
-
-            <!-- <img src="{% static 'images/team/3.jpg' %}" alt="" class="img-fluid w-100"> -->
+        <div class="main-body">  
             <div class="row gutters-sm">
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="{% static 'images/istockphoto-1300845620-612x612.jpg' %}" alt="Admin" class="rounded-circle"
+                                <img src="{{ patient.pic.url }}" alt="Admin" class="rounded-circle"
                                     width="150">
                                 <div class="mt-3">
-                                    <h4> Kenneth Valdez</h4>
+                                    <h4>{{ patient.patient_name }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +79,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-8 text-secondary">
-                                    Kenneth Valdez
+                                    {{ patient.patient_name }}
                                 </div>
                             </div>
                             <hr>
@@ -100,20 +88,9 @@
                                     <h6 class="mb-0">Address</h6>
                                 </div>
                                 <div class="col-sm-8 text-secondary">
-                                    Lorem, ipsum dolor.
+                                    {{ patient.address }}                           
                                 </div>
-                                <div class="col-sm-4">
-                                    <h6 class="mb-0"></h6>
-                                </div>
-                                <div class="col-sm-8 text-secondary">
-                                    Lorem, ipsum
-                                </div>
-                                <div class="col-sm-4">
-                                    <h6 class="mb-0"></h6>
-                                </div>
-                                <div class="col-sm-8 text-secondary">
-                                    Lorem, ipsum
-                                </div>
+                        
                             </div>
                             <hr>
                             <div class="row">
@@ -121,7 +98,8 @@
                                     <h6 class="mb-0">Age</h6>
                                 </div>
                                 <div class="col-sm-8 text-secondary">
-                                    40
+                                    {{ patient.age }}
+                                    
                                 </div>
                             </div>
                             <hr>
@@ -130,7 +108,8 @@
                                     <h6 class="mb-0">Gender</h6>
                                 </div>
                                 <div class="col-sm-8 text-secondary">
-                                    Male
+                                    {{ patient.gender }}
+                                    
                                 </div>
                             </div>
                             <hr>
@@ -139,7 +118,8 @@
                                     <h6 class="mb-0">Blood Group</h6>
                                 </div>
                                 <div class="col-sm-8 text-secondary">
-                                    AB
+                                    {{ patient.blood_grp }}
+                                    
                                 </div>
                             </div>
                             <hr>
@@ -148,7 +128,8 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-8 text-secondary">
-                                    (239) 816-9029
+                                    {{ patient.phone }}
+                                     
                                 </div>
                             </div>
 
@@ -156,7 +137,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <a class="btn btn-primary " target="__blank"
-                                        href="{% url 'patient:edit_pt' %}">Edit</a>
+                                        href="{% url 'patient:edit' %}">Edit</a>
                                 </div>
                             </div>
                         </div>

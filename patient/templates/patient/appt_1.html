@@ -40,7 +40,7 @@
                 <h1>BOOK APPOINTMENT</h1>
             </div>
             <div class="col-1 mt-3">
-                <a href="{% url 'patient:phome' %}"><i class="fa fa-home" style="font-size:48px;color:white"></i></a>
+                <a href="{% url 'patient:home' %}"><i class="fa fa-home" style="font-size:48px;color:white"></i></a>
             </div>
         </div>
         <!-- header container end-->
@@ -57,45 +57,27 @@
 
 
         <!-- select container -->
-        <form>
+        <form method="POST">
+            {% csrf_token %}
             <div class="row select_tab" id="select_container">
 
                 <div class="col-3 s-1"></div>
                 <div class="col-3 s-2">
                     <div>
-                        <select name="departments">
-                            <option disabled>Select Department</option>
-                            <option value="Heart Centre">Heart Centre</option>
-                            <option value="Neuro Science">Neuro Science</option>
-                            <option value="Liver and gastro science">Liver and gastro science</option>
-                            <option value="Women Care">Women Care</option>
-                            <option value="Child Care">Child Care</option>
-                            <option value="orthopaedics" value="">Orthopaedics</option>
-                            <option value="Heart Centre" value="">Renal Care</option>
-                            <option value="Renal Care" value="">pulmonology</option>
-                            <option value="Endocrine sciences" value="">Endocrine sciences</option>
-                            <option value="Opthalmology" value="">Opthalmology</option>
-                            <option value="Dental Care">Dental Care</option>
-                            <option value="Surgical oncology" value="">Surgical oncology</option>
-                            <option value=" Psycyhiatry " value="">Psycyhiatry </option>
-                            <option value=" Anaesthesiology" value="">Anaesthesiology</option>
-                            <option value=" Dermatology" value="">Dermatology</option>
-                            <option value=" Radiology" value="">Radiology</option>
-                            <option value=" Blood Bank" value="">Blood Bank</option>
+                        <select name="department" id="department">
+                            <option disabled selected>Select Department</option>
+
+                            {% for dept in departments %}
+                            <option value="{{ dept.id }}">{{ dept.department }}</option>
+                             {% endfor %}
                         </select>
                     </div>
                 </div>
                 <div class="col-3 s-3">
                     <div>
-                        <select name="doctors">
-                            <option disabled>Select Doctor</option>
-                            <option value="John Marshal">John Marshal</option>
-                            <option value="Marshal Root">Marshal Root</option>
-                            <option value="Siamon John">Siamon John</option>
-                            <option value="Rishat Ahmed">Rishat Ahmed</option>
-                            <option value="John Marshal">John Marshal</option>
-                            <option value="Marshal Root">Marshal Root</option>
-                            <option value="Siamon John">Siamon John</option>
+                        <select name="doctors" id = "doctors">
+                            <option disabled selected>Select Doctor</option>
+                             
                         </select>
                     </div>
                 </div>
@@ -118,6 +100,43 @@
         {% endblock %}
 
     </div>
+ 
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+ 
+
+    <script>
+
+        $('#department').change(function(){
+
+             id = $(this).val()
+             $.ajaxSetup({
+            headers: {
+              "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()
+            }
+        })
+
+             $.ajax({
+
+                url : "{% url 'patient:get_doctors' %}",  
+                type : 'POST',
+                data : {
+                    id : id
+                },
+
+                success : function(response){
+
+                   
+                    for(var i = 0; i< response.doctors.length; i++){
+
+                        console.log(response.doctors[0].dr_name)
+                        $('#doctors').append('<option>'+ response.doctors[i].dr_name + '</option>' )
+                    }
+                }
+
+
+             })
+        })
+    </script>
 
 </body>
 

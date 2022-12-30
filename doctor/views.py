@@ -33,8 +33,8 @@ def edit_profile(request):
 
     return render(request,'doctor/edit_profile.html', {'doctor': doctor})
 
-def my_appointments(request):
-    return render(request,'doctor/my_appointments.html')
+def appointment(request):
+    return render(request,'doctor/appointment.html')
 
 def patient_search(request):
     return render(request,'doctor/pt_search.html')
@@ -69,3 +69,6 @@ def change_password(request):
             error_msg = 'Invalid Password'
 
     return render(request,'doctor/change_paswd.html', {'error_msg' : error_msg, 'success_msg' : success_msg})
+
+def consulting(request):
+    return render(request,'doctor/consulting.html')
